@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <title>Jam Digital Pink</title>
+  <style>
+    body {
+      margin: 0;
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background: #1a001a;
+      font-family: 'Segoe UI', sans-serif;
+    }
+
+    .clock-container {
+      background: linear-gradient(180deg, #ff66b2, #cc0066);
+      padding: 20px 40px;
+      border-radius: 12px;
+      box-shadow: 0 0 20px rgba(255, 105, 180, 0.7);
+      text-align: center;
+      color: white;
+    }
+
+    .date {
+      font-size: 18px;
+      margin-bottom: 10px;
+      opacity: 0.9;
+    }
+
+    .time {
+      font-size: 48px;
+      font-weight: bold;
+      letter-spacing: 2px;
+    }
+  </style>
+</head>
+<body>
+
+<div class="clock-container">
+  <div class="date" id="date"></div>
+  <div class="time" id="time"></div>
+</div>
+
+<script>
+  function updateClock() {
+    const now = new Date();
+
+    // Format tanggal (Indonesia)
+    const hari = ["Minggu", "Senin", "Selasa", "Rabu", "Kamis", "Jumat", "Sabtu"];
+    const bulan = ["Januari", "Februari", "Maret", "April", "Mei", "Juni",
+                   "Juli", "Agustus", "September", "Oktober", "November", "Desember"];
+
+    const dayName = hari[now.getDay()];
+    const date = now.getDate();
+    const month = bulan[now.getMonth()];
+    const year = now.getFullYear();
+
+    document.getElementById("date").innerText =
+      `${dayName}, ${date} ${month} ${year}`;
+
+    // Format jam
+    let h = now.getHours().toString().padStart(2, '0');
+    let m = now.getMinutes().toString().padStart(2, '0');
+    let s = now.getSeconds().toString().padStart(2, '0');
+
+    document.getElementById("time").innerText = `${h}:${m}:${s}`;
+  }
+
+  setInterval(updateClock, 1000);
+  updateClock();
+</script>
+
+</body>
+</html>
